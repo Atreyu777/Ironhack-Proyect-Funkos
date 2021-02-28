@@ -3,45 +3,45 @@ const router = express.Router()
 
 const Funko = require('../models/funko.model')
 
-//crear
-router.get('/nuevoFunko', (req, res) => res.json({ message: 'hola perra'}))
+//crear -> todo ok
+router.post('/nuevoFunko', (req, res) => {
 
-//     Funko
-//         .create(req.body)
-//         .then(response => res.json(response))
-//         .catch(err => res.status(500).json({ code: 500, message: 'Error saving funkos', err }))
-// })
+    Funko
+        .create(req.body)
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json({ code: 500, message: 'Error saving funkos', err }))
+})
 
-// //lista de funkos
-// router.get('/listadoFunkos', (req, res) => {
+//lista de funkos -> todo ok
+router.get('/listadoFunkos', (req, res) => {
 
-//     Funko
-//         .find()
-//         .then(response => res.json(response))
-//         .catch(err => res.status(500).json({ code: 500, message: 'Error fetching funkos', err }))
-// })
+    Funko
+        .find()
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json({ code: 500, message: 'Error fetching funkos', err }))
+})
 // //listado por filtro 
 
 
-// //detalles del funko
-// router.get('/Funko/details/:funko_id', (req, res) => {
+//detalles del funko -> todo ok
+router.get('/Funko/detalles/:funko_id', (req, res) => {
 
-//     Funko
-//         .findById(req.params.funko_id)
-//         .then(response => res.json(response))
-//         .catch(err => res.status(500).json({ code: 500, message: 'Error fetching funkos', err }))
-// })
+    Funko
+        .findById(req.params.funko_id)
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json({ code: 500, message: 'Error fetching funkos', err }))
+})
 
-// //editar funko
-// router.put('/funko/edit/:funko_id', (req, res) => {
+//editar funko -> todo ok
+router.put('/Funko/editar/:funko_id', (req, res) => {
 
-//     Funko
-//         .findByIdAndUpdate(req.params.funko_id, req.body)
-//         .then(response => res.json(response))
-//         .catch(err => res.status(500).json({ code: 500, message: 'Error editing funko', err }))
-// })
+    Funko
+        .findByIdAndUpdate(req.params.funko_id, req.body)
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json({ code: 500, message: 'Error editing funko', err }))
+})
 
-// //borrar funko
+//borrar funko
 
 
 module.exports = router
