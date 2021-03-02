@@ -1,15 +1,15 @@
 import './App.css'
-import FunkosList from './pages/Funkos-list/Funkos-list'
+import NavBar from './layout/Navbar/NavBar'
 import Routes from './routes/Routes'
 
 
 function App() {
   return (
     <>
-      <h1>Buenos dias perra</h1>
+      <NavBar></NavBar>
       <main>
         <Routes></Routes>
-        <FunkosList></FunkosList>
+        
       </main>
     </>
   )
