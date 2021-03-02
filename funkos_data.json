@@ -1,0 +1,106 @@
+[{
+  "_id": {
+    "$oid": "603b84611ea71721a5243c09"
+  },
+  "type": "EXCLUSIVE",
+  "name": "DARK VADER",
+  "createdAt": {
+    "$date": "2021-02-28T11:54:09.106Z"
+  },
+  "updatedAt": {
+    "$date": "2021-02-28T12:10:36.204Z"
+  },
+  "__v": 0,
+  "image": "\"https://www.funkami.es/27396-medium_default/figura-funko-pop-darth-vader-luces-y-sonido-343-star-wars.jpg\"",
+  "description": "Funko de Dark Vader con luces y sonido"
+},{
+  "_id": {
+    "$oid": "603b88c984029525787f2397"
+  },
+  "type": "GITD",
+  "name": "IRON MAN",
+  "image": "\"https://www.frikimasters.es/7940-large_default/funko-pop-i-am-ironman-special-edition-glows-in-the-dark-avengers-endgame.jpg\"",
+  "createdAt": {
+    "$date": "2021-02-28T12:12:57.693Z"
+  },
+  "updatedAt": {
+    "$date": "2021-02-28T12:12:57.693Z"
+  },
+  "__v": 0,
+  "description": "Funko de Iron Man en el momento de su muerte (Glow In The Dark)"
+},{
+  "_id": {
+    "$oid": "603b8de281c2e62d313b5f9e"
+  },
+  "type": "NORMAL",
+  "name": "WANDA",
+  "image": "\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxCXjacqNN0-eICmcPT_G-HM4ni2hnphrZ5H139DZlWwfTPxGrIMUPCc8LgcitmuSw2k21wXhT&usqp=CAc\"",
+  "description": "EL funko de wandavision",
+  "createdAt": {
+    "$date": "2021-02-28T12:34:42.644Z"
+  },
+  "updatedAt": {
+    "$date": "2021-02-28T12:34:42.644Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "603b8e3481c2e62d313b5f9f"
+  },
+  "type": "NORMAL",
+  "name": "The Child",
+  "image": "\"https://www.toysrus.es/medias/?context=bWFzdGVyfHByb2R1Y3RfaW1hZ2VzfDE2MDE1fGltYWdlL2pwZWd8aDU4L2g2Yi85MzcxMjk1NTQ3NDIyfDU1ZTc5NjY0YTcyZTc1ZGM1MDgyNjE1YjE3ZTYzNTlkOTFhZWRjOGZmMjdkYTczYWIyZjJjMzdlYjAzNjg4NDI\"",
+  "description": "EL funko de Bebe Yoda con la manita",
+  "createdAt": {
+    "$date": "2021-02-28T12:36:04.515Z"
+  },
+  "updatedAt": {
+    "$date": "2021-02-28T12:36:04.515Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "603b8ee781c2e62d313b5fa0"
+  },
+  "type": "NORMAL",
+  "name": "Dobby",
+  "image": "\"https://lafrikileria.com/40762-large_default/funko-pop-harry-potter-dobby-chasqueando.jpg\"",
+  "description": "Dobby de Harry Potter",
+  "createdAt": {
+    "$date": "2021-02-28T12:39:03.974Z"
+  },
+  "updatedAt": {
+    "$date": "2021-02-28T12:39:03.974Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "603cd70a4cd91c4f456f10d0"
+  },
+  "type": "NORMAL",
+  "name": "Dobby para borrar2",
+  "description": "Dobby de Harry Potter",
+  "image": "\"https://lafrikileria.com/40762-large_default/funko-pop-harry-potter-dobby-chasqueando.jpg\"",
+  "createdAt": {
+    "$date": "2021-03-01T11:59:06.085Z"
+  },
+  "updatedAt": {
+    "$date": "2021-03-01T11:59:06.085Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "603cd70f4cd91c4f456f10d1"
+  },
+  "type": "NORMAL",
+  "name": "Dobby para borrar3",
+  "description": "Dobby de Harry Potter",
+  "image": "\"https://lafrikileria.com/40762-large_default/funko-pop-harry-potter-dobby-chasqueando.jpg\"",
+  "createdAt": {
+    "$date": "2021-03-01T11:59:11.813Z"
+  },
+  "updatedAt": {
+    "$date": "2021-03-01T11:59:11.813Z"
+  },
+  "__v": 0
+}]
