@@ -1,18 +1,37 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const funkoSchema = new Schema ({
-    name:{type: String, required: true},
-    type: { //no se si esto esta bien desarollado asi
+const funkoSchema = new Schema({
+
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    name: {
+        type: String, 
+        required: true, 
+        trim: true
+    },
+    type: { 
         type: String,
         enum: ['NORMAL', 'EXCLUSIVE', 'GITD'],
         default: 'NORMAL'
     },
     description: String,
     image: {
-        type: String} // quiero cambiarlo por File, pero da error
+        type: String
+    },
+    // price: {
+    //     type: String,
+    //     required: true
+    // }
 }, {
     timestamps: true
 })
+
+funkoSchema.statics.getUserFunkos = function (id) {
+    return mongoose.model('Funko').find({ owner: id })
+}
+
 const Funko = mongoose.model('Funko', funkoSchema)
 module.exports = Funko
