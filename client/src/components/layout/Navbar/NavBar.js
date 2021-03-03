@@ -1,6 +1,6 @@
-import { Navbar, Nav} from 'react-bootstrap'
+import { Navbar } from 'react-bootstrap'
 import logo from './logo.png'
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const NavBar = () => {
     return (
