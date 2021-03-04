@@ -6,6 +6,13 @@ const Funko = require('../models/funko.model')
 //crear -> todo ok
 router.post('/newFunko', (req, res) => {
 
+    const {  name, type, description, image } = req.body
+
+    if (!name|| !type || !description || !image) {
+        res.status(400).json({ message: 'Rellena todos los campos' })
+        return
+    }
+
     Funko
         .create(req.body)
         .then(response => res.json(response))
@@ -24,7 +31,7 @@ router.get('/list', (req, res) => {
 
 
 
-//listado por filtro -> DEJAR PARA MAS ALANTE/// pasar los filtros como query string
+//listado por filtro -> DEJAR PARA MAS ALANTE/// TEO pasar los filtros como query string
 router.get('/list/filter', (req, res) => {     //res.json({ message: 'hola perra'})) <--FUNCIONA
 
     Funko

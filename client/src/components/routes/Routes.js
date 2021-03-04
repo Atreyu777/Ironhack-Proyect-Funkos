@@ -1,14 +1,23 @@
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import IndexPage from '../pages/Index/Index'
 import Funkos from '../pages/Funkos/Funkos'
+import Signup from '../pages/Signup/Signup'
+import Login from '../pages/Login/Login'
+import Profile from '../pages/Profile/Profile'
 
-const Routes = () => {
+const Routes = ({ storeUser, loggedUser }) => {
 
-    return(
+    return (
         <Switch>
-            <Route path="/" exact render={() => <IndexPage></IndexPage>}></Route>
-            <Route path="/listado-funkos" render={() => <Funkos></Funkos>}></Route>
-            {/* TODO aqui iran el resto de rutas a medida que las necesite */}
+            <Route path="/" exact render={() => <IndexPage />}></Route>
+            <Route path="/listado-funkos" render={() => <Funkos loggedUser={loggedUser} />}></Route> 
+            {/* TODO el loggedUser de Funkos para cuando cree el boton de crear funko */}
+            {/* TODO ruta de detalles cuando me haga su componente */}
+            <Route path="/registro" render={props => <Signup storeUser={storeUser} {...props} />}></Route>
+            <Route path="/inicio-sesion" render={props => <Login storeUser={storeUser} {...props} />}></Route>
+            <Route path="/perfil" render={() => loggedUser ? <Profile oggedUser={loggedUser} /> : <Redirect to="/" />}></Route>
+
+
         </Switch>
     )
 }

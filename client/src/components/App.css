@@ -1,8 +1,13 @@
 body {
   font-weight: 200;
+  background-color: #e1d2f0
 }
 
 h1, h2, h3 {
   margin-bottom: 20px;
   font-weight: 200;
+}
+
+.disable {
+  filter: grayscale(0.8);
 }

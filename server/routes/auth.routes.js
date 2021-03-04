@@ -8,9 +8,9 @@ const User = require('../models/user.model')
 // registro
 router.post('/signup', (req, res) => {  //testeado
 
-    const { username, name, email, password } = req.body  ///meto el avatar o no por que se va a repetir y es tonteria???
+    const { username, name, email, password, avatar} = req.body  /// TEO meto el avatar o no por que se va a repetir y es tonteria???
 
-    if (!username || !name || !email || !password) {
+    if (!username || !name || !email || !password || !avatar) {
         res.status(400).json({ message: 'Rellena todos los campos' })
         return
     }
@@ -35,9 +35,9 @@ router.post('/signup', (req, res) => {  //testeado
             }
 
             const salt = bcrypt.genSaltSync(10)
-            const hashPass = bcrypt.hashSync(pasword, salt)
+            const hashPass = bcrypt.hashSync(password, salt)
 
-            return User.create({ username, name, email, password: hashPass })
+            return User.create({ username, name, email, password: hashPass, avatar })
         })
         .then(newUser => req.login(newUser, err => err ? res.status(500).json({ message: 'Error de registro' }) : res.json(newUser)))
         .catch(() => res.status(500).json({ message: 'Error guardando al usuario en la Base de Datos' }))

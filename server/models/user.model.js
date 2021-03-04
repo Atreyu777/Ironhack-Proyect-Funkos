@@ -21,8 +21,8 @@ const userSchema = new Schema({
     },
     avatar: {
         type: String, 
-        enum: ['avatarEva.jpg', 'avatarWalle.jpg', 'default.jpg'], 
-        default: 'default.jpg'
+        enum: ['avatarEva.png', 'avatarWalle.png', 'avatarAlien.png'], 
+        default: 'avatarAlien.png'
     }, 
     role: {
         type: String,

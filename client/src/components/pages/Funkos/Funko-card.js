@@ -1,22 +1,24 @@
-import { Card, Button } from 'react-bootstrap'
+import { Card, Col } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
-const FunkoCard = () => {
-
-    <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src="holder.js/100px180" />
-        <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            <Card.Text>
-                Some quick example text to build on the card title and make up the bulk of
-                the card's content.
-    </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
-        </Card.Body>
-    </Card>
-
-
-
+const FunkoCard = ({ name, type, image, description, _id, owner}) => {
+    return (
+        <Col md= {3} className="funko-card">
+            <Card >
+                <Card.Img variant="top" src={image} alt={name} />
+                <Card.Body>
+                    <h4><strong>{name}</strong></h4>
+                    <h6>{type}</h6>
+                    {/* <Card.Text>{description}</Card.Text> */}
+                    <Link to={`/detalles/${_id}`} className="btn btn-info btn-sm btnn-block" style={{margin:5}}>Detalles</Link>
+                    <Link to={`/${owner}`} className="btn btn-info btn-sm btnn-block">Contactar</Link>
+                    {/* TODO aqui realmente seria abrir una ventana para enviar un mensaje al contacto */}
+                </Card.Body>
+            </Card>
+        </Col>
+    )
 }
+
 
 export default FunkoCard
 

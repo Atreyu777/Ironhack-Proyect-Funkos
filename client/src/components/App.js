@@ -1,18 +1,47 @@
+import { Component } from 'react'
 import './App.css'
 import NavBar from './layout/Navbar/NavBar'
 import Routes from './routes/Routes'
+import AuthService from '../service/auth.service'
 
 
-function App() {
-  return (
-    <>
-      <NavBar></NavBar>
-      <main>
-        <Routes></Routes>
-        
-      </main>
-    </>
-  )
+
+class App extends Component {
+
+  constructor() {
+    super()
+    this.state = {
+      loggedUser: undefined
+    }
+    this.authService = new AuthService()
+  }
+
+  storeUser(loggedUser) {
+    this.setState({ loggedUser }, () => console.log('Usuario modificado:', this.state.loggedUser))
+
+  }
+
+  fetchUser(){
+    this.authService
+    .isLoggedIn()
+    .then(response => this.storeUser({ loggedUser: response.data }))
+    .catch(() => this.storeUser({ undefined }))
+  }
+
+  componentDidMount() {
+    this.fetchUser()
+  }
+
+  render() {
+    return (
+      <>
+        <NavBar storeUser={user => this.storeUser(user)} loggedUser={this.state.loggedUser}/>
+        <main>
+          <Routes storeUser={user => this.storeUser(user)} loggedUser={this.state.loggedUser}/>
+        </main>
+      </>
+    )
+  }
 }
 
 export default App
