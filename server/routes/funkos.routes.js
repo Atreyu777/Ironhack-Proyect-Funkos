@@ -6,15 +6,16 @@ const Funko = require('../models/funko.model')
 //crear -> todo ok
 router.post('/newFunko', (req, res) => {
 
-    const {  name, type, description, image } = req.body
+    const { name, type, description, image, price } = req.body
+    const funko = {...req.body, owner: req.user._id}
 
-    if (!name|| !type || !description || !image) {
+    if (!name|| !type || !description || !image || !price) {
         res.status(400).json({ message: 'Rellena todos los campos' })
         return
     }
 
     Funko
-        .create(req.body)
+        .create(funko)
         .then(response => res.json(response))
         .catch(err => res.status(500).json({ code: 500, message: 'Error saving funko', err }))
 })

@@ -8,7 +8,7 @@ class FunkosService {
             withCredentials: true
         })
     }
-    
+
     saveFunko = funkoDetails => this.api.post('/newFunko', funkoDetails)
     getFunkos = () => this.api.get('/list')
     // TODO aqui iria la lista filtrada por get

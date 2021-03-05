@@ -1,7 +1,7 @@
 import { Card, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-const FunkoCard = ({ name, type, image, description, _id, owner}) => {
+const FunkoCard = ({ name, type, image, description, _id, owner, price}) => {
     return (
         <Col md= {3} className="funko-card">
             <Card >
@@ -9,6 +9,7 @@ const FunkoCard = ({ name, type, image, description, _id, owner}) => {
                 <Card.Body>
                     <h4><strong>{name}</strong></h4>
                     <h6>{type}</h6>
+                    <p>{price} €</p>
                     {/* <Card.Text>{description}</Card.Text> */}
                     <Link to={`/detalles/${_id}`} className="btn btn-info btn-sm btnn-block" style={{margin:5}}>Detalles</Link>
                     <Link to={`/${owner}`} className="btn btn-info btn-sm btnn-block">Contactar</Link>
