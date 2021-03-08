@@ -8,10 +8,9 @@ class FunkoForm extends Component {
     constructor() {
         super()
         this.state = {
-            owner: '',
             name: '',
-            type: '',
             description: '',
+            type: 'NORMAL',
             image: '',
             price: ''
 
@@ -23,18 +22,17 @@ class FunkoForm extends Component {
     handleInputChange(e) {
         const { name, value } = e.target
         this.setState({ [name]: value })
-
     }
 
     handleSubmit(e) {
         e.preventDefault()
 
-        this.funkosServices
+        this.funkosService
             .saveFunko(this.state)
             .then(() => {
                 this.props.closeModal()
-                this.props.refresList()
-            })
+                this.props.refreshList()
+             })
             .catch(err => console.log(err))
     }
 
@@ -54,7 +52,7 @@ class FunkoForm extends Component {
                     <Form.Row>
                         <Form.Group as={Col} controlId="formGridType">
                             <Form.Label>Tipo</Form.Label>
-                            <Form.Control as="select" defaultValue="NORMAL" name="type" value={this.state.type} onChange={e => this.handleInputChange(e)}>
+                            <Form.Control as="select"  name="type" value={this.state.type} onChange={e => this.handleInputChange(e)}>
                                 <option>NORMAL</option>
                                 <option>EXCLUSIVE</option>
                                 <option>GITD</option>

@@ -1,9 +1,8 @@
-import { Component, useDebugValue } from 'react'
-import { Container, Button, Modal } from 'react-bootstrap'
+import { Component } from 'react'
+import { Container, Form, Button } from 'react-bootstrap'
 import FunkosList from './Funkos-list'
 import FunkosService from '../../../service/funkos.service'
-import FunkoForm from '../Funko-form/Funko-form'
-import './Funko-card.css'
+import './Funkos.css'
 
 class Funkos extends Component {
 
@@ -11,14 +10,12 @@ class Funkos extends Component {
         super()
         this.state = {
             funkos: [],
-            showForm: false
+            name: ""
         }
 
         this.funkosService = new FunkosService()
 
     }
-
-
 
     componentDidMount() {
         this.loadFunkos()
@@ -27,45 +24,43 @@ class Funkos extends Component {
     loadFunkos() {
         this.funkosService
             .getFunkos()
-            .then(response => {
-                console.log(response)
-                this.setState({ funkos: response.data })
-            })
+            .then(response => this.setState({ funkos: response.data }))
             .catch(err => console.log(err))
     }
 
-    toggleModalForm() {
-        this.setState({ showForm: true })
-        // TEO Si lo dejo en true me aparece la ventata como es logico pero al cambiarlo a value no hace nada
+    handleInputChange(e) {
+        const { name, value } = e.target
+        this.setState({ [name]: value })
+    }
+
+    handleSubmit(e) {
+        e.preventDefault()
+
+        this.funkosService
+            .searchFunkos(this.state.name)
+            .then((res) => {
+                this.setState({ funkos: res.data})
+
+            })
+            .catch(err => console.log(err))
     }
 
     render() {
         return (
             <>
                 <Container>
-                    <h1>Listado de Funkos</h1>
-                    <Button variant="info" onClick={() => this.toggleModalForm()}>Crea aquí tu Funko</Button>
-
-                    {/* TODO aqui usar LoggedUser cuando cree el botón */}
+                    <h1>Listado de Funkos en venta</h1>
+                    <Form onSubmit={e => this.handleSubmit(e)}>
+                        <Form.Group>
+                            <Form.Label>Busca tu Funko</Form.Label>
+                            <Form.Control name="name" type="text" value={this.state.name} onChange={e => this.handleInputChange(e)} placeholder="Escribe aquí el nombre del Funko que buscas" />
+                        </Form.Group>
+                        <Button variant="primary" type="submit">Buscar</Button>
+                    </Form>
                     <hr />
-                    <ul>
-                        <FunkosList funkos={this.state.funkos} />
-                    </ul>
+                    <FunkosList funkos={this.state.funkos} loggedUser={this.props.loggedUser} refreshList={() => this.loadFunkos()}/>
                 </Container>
-
-                {/* TODO aqui usar Modal para la creacion de nuevo Funko */}
-
-                <Modal show={this.state.showForm} onHide={() => this.toggleModalForm(false)}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Crea aquí tu Funko</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <FunkoForm closeModal={() => this.toggleModalForm(false)} refreshList={() => this.loadFunkos()} />
-                    </Modal.Body>
-                </Modal>
             </>
-
-
         )
     }
 }

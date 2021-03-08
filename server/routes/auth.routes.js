@@ -8,7 +8,7 @@ const User = require('../models/user.model')
 // registro
 router.post('/signup', (req, res) => {  //testeado
 
-    const { username, name, email, password, avatar} = req.body  /// TEO meto el avatar o no por que se va a repetir y es tonteria???
+    const { username, name, email, password, avatar} = req.body  
 
     if (!username || !name || !email || !password || !avatar) {
         res.status(400).json({ message: 'Rellena todos los campos' })

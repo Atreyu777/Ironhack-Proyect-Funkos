@@ -1,33 +1,38 @@
-// por valorar
-// const mongoose = require('mongoosee')
-// const Schema = mongoose.Schema
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-// const messageSchema = new Schema({
+const conversationSchema = new Schema({
+    users: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+    funko: {
+        type: Schema.Types.ObjectId,
+        ref: 'Funko'
+    },
+    messages: [{
+        username: { 
+            type: String, 
+            unique: true, 
+            required: true, 
+            trim: true
+        },
+        text: String
+    }]
+    },{
+        timestamps: true
+    }
+)
+conversationSchema.statics.getUsersConversation = function (id) {
+    return mongoose.model('message').find({ user: id })
+}
+conversationSchema.statics.getFunkoConversation = function (id) {
+    return mongoose.model('message').find({ funko: id })
+}
 
-//         user: {
-//             type: Schema.Types.ObjectId,
-//             ref: 'User'
-//         },
-//         funko: {
-//             type: Schema.Types.ObjectId,
-//             ref: 'Funko'
-//         },
-//         text: {
-//             type: String,
-//             required: true,
-//             minLength: 3,
-//             maxLength: 300
+const Conversation = mongoose.model('Conversation', conversationSchema)
+module.exports = Conversation
 
-//         },
-//     },{
-//         timestamps: true
-//     }
-// )
-
-// messageSchema.statics.getUserMessage = function (id) {
-//     return mongoose.model('message').find({ user: id })
-// }
-
-// messageSchema.statics.getFunkoMessage = function (id) {
-//     return 
-// }
+//createConversation 
+//getConversation en la ruta de ka api findByUsers compruebe si los dos usuarios estn en users.
+//createMessage

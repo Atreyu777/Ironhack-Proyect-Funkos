@@ -1,10 +1,18 @@
 import { Container } from 'react-bootstrap'
 
 
-const IndexPage = () => {
+const IndexPage = ({ loggedUser }) => {
+
     return (
         <Container>
-            <h1>Esta es la página principal de FunkInder!!!</h1>
+        {
+            loggedUser
+                ?
+                <h1>Bienvenid@ {loggedUser?.username}</h1>
+                :
+                <h1>Esta es la página principal de FunkInder!!!</h1>
+        }
+            
         </Container>
     )
 }

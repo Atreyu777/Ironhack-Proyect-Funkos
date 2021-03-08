@@ -19,21 +19,13 @@ class Signup extends Component {
             avatar: '' // por default ya tiene uno asignado y siempre se me crea con este
 
         }
-
         this.authService = new AuthService()
     }
 
     handleInputChange(e) {
         const { name, value } = e.target
         this.setState({ [name]: value })
-
     }
-    // ponerle la clase Active, poner en el estado la imagen selcecionada
-
-    // handleImageChange(e) { 
-    //     e.preventDefault() 
-    //     this.setState({ avatar: e.target.className})
-    // }
 
     handleImageChange(e) {
         const active = document.getElementsByName("avatar")
@@ -43,12 +35,6 @@ class Signup extends Component {
         e.target.classList.replace("disable", "active")
         this.setState({ avatar: e.target.getAttribute("alt") })
     }
-
-    // handleImageChange(e) {       
-    //     const { name, type } = e.target
-    //     let inputValue = type === 'image' ? e.target.image : e.target.value
-    //     this.setState({ [name]: inputValue })
-    // }
 
     handleSubmit(e) {
         e.preventDefault()
@@ -60,7 +46,6 @@ class Signup extends Component {
                 this.props.history.push('/')
             })
             .catch(err => console.log({ err }))
-
     }
 
 

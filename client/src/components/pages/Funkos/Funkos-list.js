@@ -1,10 +1,10 @@
 import FunkoCard from './Funko-card'
 import { Row } from 'react-bootstrap'
 
-const FunkosList = (props) => {
+const FunkosList = ({ funkos, user_id}) => {
     return (
         <Row>
-            {props.funkos?.map(elm => <FunkoCard key={elm._id} {...elm}></FunkoCard>)}
+            {funkos?.map(elm => <FunkoCard key={elm._id} {...elm} user_id={user_id}/>)}
         </Row>
 
     )

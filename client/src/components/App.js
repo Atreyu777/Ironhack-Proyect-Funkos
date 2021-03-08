@@ -17,15 +17,14 @@ class App extends Component {
   }
 
   storeUser(loggedUser) {
-    this.setState({ loggedUser }, () => console.log('Usuario modificado:', this.state.loggedUser))
-
+    this.setState({ loggedUser })
   }
 
   fetchUser(){
     this.authService
     .isLoggedIn()
-    .then(response => this.storeUser({ loggedUser: response.data }))
-    .catch(() => this.storeUser({ undefined }))
+    .then(response => this.storeUser( response.data ))
+    .catch(() => this.storeUser(null))
   }
 
   componentDidMount() {

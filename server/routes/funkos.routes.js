@@ -6,14 +6,15 @@ const Funko = require('../models/funko.model')
 //crear -> todo ok
 router.post('/newFunko', (req, res) => {
 
-    const { name, type, description, image, price } = req.body
-    const funko = {...req.body, owner: req.user._id}
-
-    if (!name|| !type || !description || !image || !price) {
+    const { name, description, type, image, price } = req.body
+    
+    if (!name|| !description || !type || !image || !price) {
         res.status(400).json({ message: 'Rellena todos los campos' })
         return
     }
-
+    
+    const funko = {...req.body, owner: req.user._id}
+    
     Funko
         .create(funko)
         .then(response => res.json(response))
@@ -29,20 +30,25 @@ router.get('/list', (req, res) => {
         .catch(err => res.status(500).json({ code: 500, message: 'Error fetching funkos', err }))
 })
 
-
-
-
-//listado por filtro -> DEJAR PARA MAS ALANTE/// TEO pasar los filtros como query string
-router.get('/list/filter', (req, res) => {     //res.json({ message: 'hola perra'})) <--FUNCIONA
+//lista de Funkos en perfil -> todo ok
+router.get('/listOwner', (req, res) => {
 
     Funko
-        .find() // mejor .find que .findOne() por si me salen varios??
-        .select('name type') // setQuery???
+        .find({owner: req.user._id})
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json({ code: 500, message: 'Error fetching funkos', err }))
+})
+
+//listado por filtro -> 
+router.get('/list/filter/:name', (req, res) => { 
+
+    Funko
+        .find({name: req.params.name}) 
+        .populate('owner')
         .then(response => res.json(response))      
         .catch(err => res.status(500).json({ code: 500, message: 'Error fetching funkos', err }))
 
 })
-
 
 
 
@@ -57,7 +63,7 @@ router.get('/details/:funko_id', (req, res) => {
 })
 
 //borrar funko -> todo ok, lo encuentra y lo quita de la DB
-router.get('/delete/:funko_id', (req, res) => {
+router.delete('/delete/:funko_id', (req, res) => {
     
     Funko
     .findByIdAndDelete(req.params.funko_id)
