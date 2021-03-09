@@ -15,7 +15,7 @@ router.post('/createConversation', (req, res) => {
 
 
 //getConversation en la ruta de la api findByUsers compruebe si los dos usuarios estn en users.
-router.get('/getConversation', (req, res) => {
+router.get('/getConversation', (req, res) => { // en el test me sale el error del html
 
     Conversation
         .findByUsers()
@@ -27,7 +27,7 @@ router.get('/getConversation', (req, res) => {
 
 
 
-////createMessage
+////createMessage -> el test me da 1.....en la terminal me sale un 200
 router.post('/createMessage', (req, res) => {
 
     Conversation 

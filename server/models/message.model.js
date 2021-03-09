@@ -33,6 +33,3 @@ conversationSchema.statics.getFunkoConversation = function (id) {
 const Conversation = mongoose.model('Conversation', conversationSchema)
 module.exports = Conversation
 
-//createConversation 
-//getConversation en la ruta de ka api findByUsers compruebe si los dos usuarios estn en users.
-//createMessage
