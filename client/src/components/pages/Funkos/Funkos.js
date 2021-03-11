@@ -12,9 +12,7 @@ class Funkos extends Component {
             funkos: [],
             name: ""
         }
-
         this.funkosService = new FunkosService()
-
     }
 
     componentDidMount() {
@@ -38,10 +36,7 @@ class Funkos extends Component {
 
         this.funkosService
             .searchFunkos(this.state.name)
-            .then((res) => {
-                this.setState({ funkos: res.data})
-
-            })
+            .then((res) => this.setState({ funkos: res.data }))
             .catch(err => console.log(err))
     }
 
@@ -58,7 +53,7 @@ class Funkos extends Component {
                         <Button variant="primary" type="submit">Buscar</Button>
                     </Form>
                     <hr />
-                    <FunkosList funkos={this.state.funkos} loggedUser={this.props.loggedUser} refreshList={() => this.loadFunkos()}/>
+                    <FunkosList funkos={this.state.funkos} loggedUser={this.props.loggedUser} refreshList={() => this.loadFunkos()} deleteFunko={(funkoId) => this.deleteFunko(funkoId)} handleAlert={this.props.handleAlert} />
                 </Container>
             </>
         )

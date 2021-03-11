@@ -14,7 +14,7 @@ class FunkosService {
     getMyFunkos = () => this.api.get('/listOwner')
     searchFunkos = (name) => this.api.get(`/list/filter/${name}`)
     getFunko = (funkoId, funkoDetails) => this.api.get(`/details/${funkoId}`, funkoDetails)
-    deleteFunko = funkoId => this.api.get(`/delete/${funkoId}`)
+    deleteFunko = funkoId => this.api.delete(`/delete/${funkoId}`)
     editFunko = (funkoId, funkoDetails) => this.api.put(`/edit/${funkoId}`, funkoDetails)
 }
 

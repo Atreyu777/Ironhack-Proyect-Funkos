@@ -4,14 +4,17 @@ import { Link, NavLink } from 'react-router-dom'
 
 import AuthService from '../../../service/auth.service'
 
-const NavBar = ({ storeUser, loggedUser }) => {
+const NavBar = ({ storeUser, loggedUser, handleAlert }) => {
 
     const authService = new AuthService()
     const logoutUser = () => {
 
         authService
             .logout()
-            .then(response => storeUser(undefined))
+            .then(response => {
+                storeUser(undefined)
+                handleAlert(true, undefined, 'Has cerrado sesión')
+            })
             .catch(err => console.log(err))
     }
 
@@ -40,26 +43,33 @@ const NavBar = ({ storeUser, loggedUser }) => {
                         loggedUser
                             ?
                             <>
-                            <NavLink to="/perfil">
-                                <Nav.Link as="span">Perfil de {loggedUser.username}</Nav.Link>
-                            </NavLink>
-                            <Nav.Link as="span" onClick={() => logoutUser()}>Cerrar sesión</Nav.Link>
+                                <NavLink to="/perfil">
+                                    <Nav.Link as="span">Perfil de {loggedUser.username}</Nav.Link>
+                                </NavLink>
+                                <Nav.Link as="span" onClick={() => logoutUser()}>Cerrar sesión</Nav.Link>
+                                <Navbar.Brand> <img
+                                    alt="avatar"
+                                    src={`avatars/${loggedUser.avatar}`}
+                                    height="40"
+                                    className="d-inline-block align-top" />
+                                </Navbar.Brand>
+
                             </>
                             :
 
                             <>
-                            <NavLink to="/registro">
-                                <Nav.Link as="span">Registro</Nav.Link>
-                            </NavLink>
-                            <NavLink to="/inicio-sesion">
-                                <Nav.Link as="span">Iniciar sesión</Nav.Link>
-                            </NavLink>
+                                <NavLink to="/registro">
+                                    <Nav.Link as="span">Registro</Nav.Link>
+                                </NavLink>
+                                <NavLink to="/inicio-sesion">
+                                    <Nav.Link as="span">Iniciar sesión</Nav.Link>
+                                </NavLink>
                             </>
 
                     }
 
 
-                    
+
 
                 </Nav>
             </Navbar.Collapse>

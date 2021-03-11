@@ -4,7 +4,6 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 
 class Login extends Component {
 
-
     constructor() {
         super()
         this.state = {
@@ -29,14 +28,10 @@ class Login extends Component {
                 this.props.storeUser(response.data)
                 this.props.history.push('/')
             })
-            .catch(err => console.log({ err }))
+            .catch(err => this.props.handleAlert(true, 'Error', err.response.data.message))
     }
 
-
-
     render() {
-
-
         return (
             <Container>
                 <Row>

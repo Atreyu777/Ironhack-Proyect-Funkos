@@ -6,29 +6,15 @@ const conversationSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
-    funko: {
-        type: Schema.Types.ObjectId,
-        ref: 'Funko'
-    },
+  
     messages: [{
-        username: { 
-            type: String, 
-            unique: true, 
-            required: true, 
-            trim: true
-        },
+        username:  String, 
         text: String
     }]
     },{
         timestamps: true
     }
 )
-conversationSchema.statics.getUsersConversation = function (id) {
-    return mongoose.model('message').find({ user: id })
-}
-conversationSchema.statics.getFunkoConversation = function (id) {
-    return mongoose.model('message').find({ funko: id })
-}
 
 const Conversation = mongoose.model('Conversation', conversationSchema)
 module.exports = Conversation

@@ -21,7 +21,6 @@ class FunkoDetails extends Component {
             .catch(err => console.log(err))
     }
 
-
     render() {
         return (
             <Container>
@@ -41,8 +40,6 @@ class FunkoDetails extends Component {
                 </Row>
 
             </Container>
-
-
         )
     }
 }

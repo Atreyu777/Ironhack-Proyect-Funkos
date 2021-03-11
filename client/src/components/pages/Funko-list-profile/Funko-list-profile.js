@@ -13,9 +13,7 @@ class FunkoListProfile extends Component {
             funkos: [],
             showForm: false
         }
-
         this.funkosService = new FunkosService()
-
     }
 
     componentDidMount() {
@@ -29,6 +27,13 @@ class FunkoListProfile extends Component {
             .catch(err => console.log(err))
     }
 
+    deleteFunko(funkoId) {
+        this.funkosService
+            .deleteFunko(funkoId)
+            .then(response => this.loadFunkos())
+            .catch(err => console.log(err))
+    }
+
     toggleModalForm(value) {
         this.setState({ showForm: value })
     }
@@ -37,20 +42,18 @@ class FunkoListProfile extends Component {
         return (
             <>
                 <Container>
-                    <Button variant="info" onClick={() => this.toggleModalForm(true)} style={{margin: 5}}>Sube aquí tu Funko</Button>                   
-                    <FunkosList funkos={this.state.funkos} user_id={this.props.user_id}/>                   
+                    <Button variant="info" onClick={() => this.toggleModalForm(true)} style={{ margin: 20 }}>Sube aquí tu Funko</Button>
+                    <FunkosList funkos={this.state.funkos} user_id={this.props.user_id} deleteFunko={(funkoId) => this.deleteFunko(funkoId)} />
                 </Container>
                 <Modal show={this.state.showForm} onHide={() => this.toggleModalForm(false)}>
                     <Modal.Header closeButton>
                         <Modal.Title>Añade toda la información</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <FunkoForm closeModal={() => this.toggleModalForm(false)} refreshList={() => this.loadFunkos()} />
+                        <FunkoForm closeModal={() => this.toggleModalForm(false)} refreshList={() => this.loadFunkos()} handleAlert={this.props.handleAlert} />
                     </Modal.Body>
                 </Modal>
             </>
-
-
         )
     }
 }

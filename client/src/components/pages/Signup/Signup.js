@@ -16,7 +16,7 @@ class Signup extends Component {
             name: '',
             email: '',
             password: '',
-            avatar: '' // por default ya tiene uno asignado y siempre se me crea con este
+            avatar: ''
 
         }
         this.authService = new AuthService()
@@ -29,7 +29,7 @@ class Signup extends Component {
 
     handleImageChange(e) {
         const active = document.getElementsByName("avatar")
-        for (let i = 0; i < active.length; i++) {         
+        for (let i = 0; i < active.length; i++) {
             active[i].classList.replace("active", "disable")
         }
         e.target.classList.replace("disable", "active")
@@ -45,10 +45,11 @@ class Signup extends Component {
                 this.props.storeUser(response.data)
                 this.props.history.push('/')
             })
-            .catch(err => console.log({ err }))
+            .catch(err => {
+                console.log(err)
+                this.props.handleAlert(true, 'Error', err.response.data.message)
+            })
     }
-
-
 
     render() {
         return (
